@@ -1,0 +1,11 @@
+.preloader__image {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  background: url('../../../images/preloader.gif') no-repeat 50% 50%;
+}
+

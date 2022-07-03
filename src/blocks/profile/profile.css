@@ -1,0 +1,18 @@
+.profile {
+  display: flex;
+  margin: 0 auto 50px;
+  align-items: center;
+  max-width: 880px;
+  justify-content: center;
+  column-gap: 30px;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+@media (max-width: 920px) {
+  .profile {
+    flex-direction: column;
+    margin: 0 19px 36px;
+  }
+}
+

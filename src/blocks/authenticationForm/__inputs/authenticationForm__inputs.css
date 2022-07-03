@@ -1,0 +1,18 @@
+.authenticationForm__inputs {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CCCCCC;
+  border: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  margin-bottom: 30px;
+  background: none;
+  padding: 0;
+}
+

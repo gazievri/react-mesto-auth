@@ -1,0 +1,18 @@
+.element__title-like {
+  background-image: url(../../../images/element-title-heart.svg);
+  width: 22px;
+  height: 19px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: 0.3s;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+.element__title-like:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  transform-origin: bottom;
+  transform: scale(1.1);
+}

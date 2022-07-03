@@ -1,0 +1,10 @@
+.popup__container_type_info-tooltip {
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 430px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

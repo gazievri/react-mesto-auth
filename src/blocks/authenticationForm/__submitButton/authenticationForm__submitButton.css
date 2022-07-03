@@ -1,0 +1,19 @@
+.authenticationForm__submitButton {
+  margin: 216px 0 0 0;
+  height: 50px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  transition: 0.3s;
+}
+
+.authenticationForm__submitButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

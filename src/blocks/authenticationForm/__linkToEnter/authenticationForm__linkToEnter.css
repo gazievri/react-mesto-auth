@@ -1,0 +1,17 @@
+.authenticationForm__linkToEnter {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.authenticationForm__linkToEnter:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+

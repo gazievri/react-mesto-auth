@@ -1,0 +1,19 @@
+.element__bin {
+  background-image: url(../../../images/trash-bin.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  z-index: 3;
+  padding: 0;
+  top: 20px;
+  right: 20px;
+}
+
+.element__bin:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

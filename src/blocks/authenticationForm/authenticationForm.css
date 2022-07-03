@@ -1,0 +1,11 @@
+.authenticationForm {
+  max-width: 358px;
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto 112px;
+  padding: 0;
+}
+
+
+
+

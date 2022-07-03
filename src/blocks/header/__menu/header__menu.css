@@ -1,0 +1,17 @@
+.header__menu {
+  margin: 0 0 0 24px;
+  align-self: center;
+  padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  transition: 0.3s;
+}
+
+.header__menu:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

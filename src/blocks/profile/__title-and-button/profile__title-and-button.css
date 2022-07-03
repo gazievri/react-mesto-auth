@@ -1,0 +1,15 @@
+.profile__title-and-button {
+  display: flex;
+  flex-direction: column;
+  column-gap: 18px;
+  align-items: baseline;
+  max-width: 500px;
+}
+
+@media (max-width: 920px) {
+  .profile__title-and-button {
+    column-gap: 10px;
+    padding-left: 25px;
+    align-items: center;
+  }
+}

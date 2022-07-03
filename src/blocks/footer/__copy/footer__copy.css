@@ -1,0 +1,33 @@
+.footer__copy {
+  margin: 66px auto 0;
+  max-width: 880px;
+  font-family: Inter, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+}
+
+@media (max-width: 917px) {
+  .footer__copy {
+    max-width: 581px;
+  }
+}
+
+
+@media (max-width: 618px) {
+  .footer__copy {
+    max-width: 282px;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .footer__copy {
+    margin: 48px 19px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

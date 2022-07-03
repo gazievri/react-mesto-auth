@@ -1,0 +1,4 @@
+.preloader_status_hiding {
+  transition: 0.3s opacity;
+  opacity: 0;
+}

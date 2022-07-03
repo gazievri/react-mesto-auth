@@ -1,0 +1,13 @@
+.popup__error-text {
+  display: inline-block;
+  width: 358px;
+  visibility: hidden;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  margin-left: 36px;
+  
+}

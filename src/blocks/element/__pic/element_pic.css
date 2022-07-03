@@ -1,0 +1,16 @@
+.element__pic {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  transition: 0.3s;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* .element__pic:hover {
+  cursor: pointer;
+  transform-origin: bottom;
+  transform: scale(1.1);
+} */

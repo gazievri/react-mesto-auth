@@ -1,0 +1,12 @@
+.header__userLoggedInEmail {
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  align-self: center;
+}

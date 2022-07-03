@@ -1,0 +1,16 @@
+.root {
+  background-color: #000;
+  padding-top: 45px;
+  padding-bottom: 60px;
+  padding-left: 19px;
+  padding-right: 19px;
+  margin: 0 auto 0;
+  max-width: 882px;
+  min-height: 100%;
+}
+
+@media (max-width: 320px) {
+  .root {
+    padding: 28px 0 36px;
+  }
+}
