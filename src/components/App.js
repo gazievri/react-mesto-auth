@@ -30,6 +30,8 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
+  const [isRegisterResultPopupOpen, setIsRegisterResultPopupOpen] = React.useState(false);
+  const [isRegisterSucceed, setIsRegisterSucceed] = React.useState(true);
 
   React.useEffect(() => {
     api.getInfo()
@@ -48,8 +50,6 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
   }, [])
-
-
 
   function handleClickDeleteCard() {
     setStateIsConfirmDeletePopupOpen(true);
@@ -73,6 +73,11 @@ function App() {
     setStateIsAddPlacePopupOpen(false);
     setStateIsConfirmDeletePopupOpen(false);
     setSelectedCard(null);
+  }
+
+  function handleClickTooltipPopupClose() {
+    setIsRegisterResultPopupOpen(false);
+    if (isRegisterSucceed) {history.push('/sign-in')}
   }
 
   function handleUpdateUser(data) {
@@ -118,10 +123,14 @@ function App() {
     authApi.register(email, password)
     .then(data => {
       if (data.data._id || data.data.email) {
-        history.push('/sign-in');
+        setIsRegisterSucceed(true);
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      setIsRegisterSucceed(false);
+    });
+    setIsRegisterResultPopupOpen(true);
   }
 
   function handleLogin(email, password) {
@@ -198,7 +207,7 @@ function App() {
               card={selectedCard}
               onClose={closeAllPopups}
             />
-            <InfoTooltip isSuccess={true} />
+            <InfoTooltip isSuccess={isRegisterSucceed} isOpen={isRegisterResultPopupOpen} onClose={handleClickTooltipPopupClose} />
           </div>
       </div>
     </CurrentUserContext.Provider>
