@@ -9,6 +9,8 @@
   line-height: 22px;
   color: #FFFFFF;
   transition: 0.3s;
+  border: 0;
+  background-color: transparent;
 }
 
 .header__menu:hover {

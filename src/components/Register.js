@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as authApi from "../utils/authApi.js";
 
 
 const Register = ({ handleRegister }) => {
@@ -33,7 +32,7 @@ const Register = ({ handleRegister }) => {
        <input className="authenticationForm__inputs" placeholder="Пароль" type="password" required onChange={handleChange} name="password" value={data.password} minLength={8} maxLength={20}></input>
       <button className="authenticationForm__submitButton" type="submit">Зарегистрироваться</button>
       <p className="authenticationForm__toEnter">Уже зарегистрированы?
-        <Link to="sign-in" className="authenticationForm__linkToEnter"> Войти</Link>
+        <Link to="/sign-in" className="authenticationForm__linkToEnter"> Войти</Link>
        </p>
     </form>
   )

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
 
   const [data, setData] = React.useState(
     {
@@ -20,7 +20,9 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(data)
+    const {email, password} = data;
+    handleLogin(email, password);
+
   }
 
   return(
@@ -30,7 +32,7 @@ const Login = () => {
        <input className="authenticationForm__inputs" placeholder="Пароль" name="password" type="password" required onChange={handleChange} value={data.password}></input>
       <button className="authenticationForm__submitButton" type="submit">Войти</button>
       <p className="authenticationForm__toEnter">Не зарегистрированы?
-        <Link to="sign-up" className="authenticationForm__linkToEnter"> Регистрация</Link>
+        <Link to="/sign-up" className="authenticationForm__linkToEnter"> Регистрация</Link>
        </p>
     </form>
   )

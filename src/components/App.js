@@ -10,11 +10,10 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ConfirmDeletePopup from './ConfirmDeletePopup';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import InfoTooltip from './InfoTooltip';
-import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import * as authApi from "../utils/authApi.js";
 
@@ -29,8 +28,8 @@ function App() {
   const [cards, setDataCards] = React.useState([]);
   const [selectedCardForDelete, setSelectedCardForDelete] = React.useState(null);
   const [loggedIn, setLoggedIn] = React.useState(false);
-
-
+  const [email, setEmail] = React.useState('');
+  const history = useHistory();
 
   React.useEffect(() => {
     api.getInfo()
@@ -46,15 +45,9 @@ function App() {
     .catch(err => console.log(err));
   }, []);
 
-
-  function handleRegister(email, password) {
-    console.log(email, password);
-    authApi.register(email, password)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-
-  }
-
+  React.useEffect(() => {
+    tokenCheck();
+  }, [])
 
 
 
@@ -96,12 +89,6 @@ function App() {
     closeAllPopups();
   }
 
-  // React.useEffect(() => {
-  //   api.getCards()
-  //   .then(resolve => setDataCards(resolve))
-  //   .catch(err => console.log(err));
-  // }, []);
-
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
@@ -127,28 +114,73 @@ function App() {
     closeAllPopups();
   }
 
+  function handleRegister(email, password) {
+    authApi.register(email, password)
+    .then(data => {
+      if (data.data._id || data.data.email) {
+        history.push('/sign-in');
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
+  function handleLogin(email, password) {
+    authApi.login(email, password)
+    .then(data => {
+      if(data.token) {
+        localStorage.setItem('jwt', data.token);
+        setLoggedIn(true);
+        setEmail(email);
+        history.push('/');
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  function tokenCheck() {
+    let jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      let jwt = localStorage.getItem('jwt');
+      authApi.getContent(jwt)
+      .then(res => {
+        console.log(res)
+        if(res.data._id) {
+          setEmail(res.data.email);
+          setLoggedIn(true);
+          history.push('/');
+        }
+      })
+    }
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('jwt');
+    setEmail('');
+    setLoggedIn(false);
+    history.push('/sign-in');
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
           <div className="root">
-            <Header src={logo} />
+            <Header src={logo} email={email} loggedIn={loggedIn} handleLogout={handleLogout}  />
             <Switch>
               <ProtectedRoute
-                exact path="/"
-                loggedIn={loggedIn}
-                component={Main}
-
-                onEditAvatar={handleClickEditAvatar}
-                onAddPlace={handleClickAddPlace}
-                onEditProfile={handleClickEditProfile}
-                onCardClick={setSelectedCard}
-                cards={cards}
-                onCardLike={handleCardLike}
-                onCardDelete={handleClickDeleteCard}
-                cardForDelete={setSelectedCardForDelete}
-              />
+                  exact path="/"
+                  loggedIn={loggedIn}
+                  component={Main}
+                  onEditAvatar={handleClickEditAvatar}
+                  onAddPlace={handleClickAddPlace}
+                  onEditProfile={handleClickEditProfile}
+                  onCardClick={setSelectedCard}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleClickDeleteCard}
+                  cardForDelete={setSelectedCardForDelete}
+                />
               <Route path="/sign-in">
-                <Login />
+                <Login handleLogin={handleLogin}/>
               </Route>
               <Route path="/sign-up">
                 <Register handleRegister={handleRegister} />
