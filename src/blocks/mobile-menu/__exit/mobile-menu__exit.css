@@ -1,6 +1,5 @@
-.header__menu {
-  display: block;
-  margin: 0 0 0 24px;
+.mobile-menu__exit {
+  margin: 0;
   align-self: center;
   padding: 0;
   font-family: 'Inter';
@@ -14,18 +13,13 @@
   background-color: transparent;
 }
 
-.header__menu:hover {
+.mobile-menu__exit:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media (max-width: 320px) {
-  .header__menu {
-    font-size: 14px;
-    line-height: 17px;
-    display: none;
+  .mobile-menu__exit {
+
   }
 }
-
-
-

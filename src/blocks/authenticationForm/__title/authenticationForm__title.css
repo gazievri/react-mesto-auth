@@ -9,3 +9,9 @@
   font-size: 24px;
   line-height: 29px;
 }
+
+@media (max-width: 320px) {
+  .authenticationForm__title {
+    margin-bottom: 40px;
+  }
+}

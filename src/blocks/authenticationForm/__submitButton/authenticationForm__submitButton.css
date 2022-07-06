@@ -17,3 +17,10 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+@media (max-width: 320px) {
+  .authenticationForm__submitButton {
+    margin: 143px 0 0 0;
+    height: 46px;
+  }
+}

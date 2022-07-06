@@ -9,3 +9,10 @@
   max-width: 300px;
   margin: 0;
 }
+
+@media (max-width: 480px) {
+  .popup__tooltip-text {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

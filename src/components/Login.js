@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, setIsLoginForm }) => {
 
   const [data, setData] = React.useState(
     {
@@ -9,6 +9,10 @@ const Login = ({ handleLogin }) => {
       password: ''
     }
   )
+
+  React.useEffect(()=>{
+    setIsLoginForm(true);
+  }, [])
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -22,7 +26,6 @@ const Login = ({ handleLogin }) => {
     e.preventDefault();
     const {email, password} = data;
     handleLogin(email, password);
-
   }
 
   return(
