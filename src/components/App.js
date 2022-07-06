@@ -35,8 +35,6 @@ function App() {
   const [isLoginForm, setIsLoginForm] = React.useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-  console.log(isLoginForm);
-
   React.useEffect(() => {
     api.getInfo()
     .then(res => {
@@ -58,8 +56,6 @@ function App() {
   function handleClickMenuLink() {
     isLoginForm ? history.push('/sign-up') : history.push('/sign-in');
   }
-
-
 
   function handleClickDeleteCard() {
     setStateIsConfirmDeletePopupOpen(true);
