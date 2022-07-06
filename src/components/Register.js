@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const Register = ({ handleRegister }) => {
+const Register = ({ handleRegister, setIsLoginForm }) => {
 
   const [data, setData] = React.useState(
     {
@@ -10,6 +10,8 @@ const Register = ({ handleRegister }) => {
       password: ''
     }
   )
+
+  React.useEffect(() => {setIsLoginForm(false)}, [])
 
   function handleChange(e) {
     const {name, value} = e.target;

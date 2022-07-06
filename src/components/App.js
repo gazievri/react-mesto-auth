@@ -32,6 +32,10 @@ function App() {
   const history = useHistory();
   const [isRegisterResultPopupOpen, setIsRegisterResultPopupOpen] = React.useState(false);
   const [isRegisterSucceed, setIsRegisterSucceed] = React.useState(true);
+  const [isLoginForm, setIsLoginForm] = React.useState('');
+  let menuAction;
+
+  console.log(isLoginForm);
 
   React.useEffect(() => {
     api.getInfo()
@@ -50,6 +54,12 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
   }, [])
+
+  function handleClickMenuLink() {
+    isLoginForm ? history.push('/sign-up') : history.push('/sign-in');
+  }
+
+
 
   function handleClickDeleteCard() {
     setStateIsConfirmDeletePopupOpen(true);
@@ -173,7 +183,14 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
           <div className="root">
-            <Header src={logo} email={email} loggedIn={loggedIn} handleLogout={handleLogout}  />
+            <Header
+              src={logo}
+              email={email}
+              loggedIn={loggedIn}
+              handleLogout={handleLogout}
+              isLoginForm={isLoginForm}
+              handleClickMenuLink={handleClickMenuLink}
+            />
             <Switch>
               <ProtectedRoute
                   exact path="/"
@@ -189,10 +206,10 @@ function App() {
                   cardForDelete={setSelectedCardForDelete}
                 />
               <Route path="/sign-in">
-                <Login handleLogin={handleLogin}/>
+                <Login handleLogin={handleLogin} setIsLoginForm={setIsLoginForm} />
               </Route>
               <Route path="/sign-up">
-                <Register handleRegister={handleRegister} />
+                <Register handleRegister={handleRegister} setIsLoginForm={setIsLoginForm} />
               </Route>
               <Route path="*">
                 {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
