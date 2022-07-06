@@ -33,7 +33,7 @@ function App() {
   const [isRegisterResultPopupOpen, setIsRegisterResultPopupOpen] = React.useState(false);
   const [isRegisterSucceed, setIsRegisterSucceed] = React.useState(true);
   const [isLoginForm, setIsLoginForm] = React.useState('');
-  let menuAction;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   console.log(isLoginForm);
 
@@ -179,6 +179,14 @@ function App() {
     history.push('/sign-in');
   }
 
+  function handleClickOpenMobileMenu() {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false)
+    } else {
+      setIsMobileMenuOpen(true)
+    }
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -190,6 +198,8 @@ function App() {
               handleLogout={handleLogout}
               isLoginForm={isLoginForm}
               handleClickMenuLink={handleClickMenuLink}
+              isMobileMenuOpen={isMobileMenuOpen}
+              handleClickOpenMobileMenu={handleClickOpenMobileMenu}
             />
             <Switch>
               <ProtectedRoute

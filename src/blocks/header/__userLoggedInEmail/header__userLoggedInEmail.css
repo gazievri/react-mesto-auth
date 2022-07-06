@@ -9,4 +9,12 @@
   line-height: 22px;
   color: #FFFFFF;
   align-self: center;
+  visibility: visible;
 }
+
+@media (max-width: 320px) {
+  .header__userLoggedInEmail {
+    display: none;
+  }
+}
+

@@ -8,6 +8,7 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__menu/header__menu.css);
 @import url(./blocks/header/__userLoggedInEmail/header__userLoggedInEmail.css);
+@import url(./blocks/header/__burger/header__burger.css);
 @import url(./blocks/logo/logo.css);
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);
@@ -61,5 +62,10 @@
 @import url(./blocks/authenticationForm/__toEnter/authenticationForm__toEnter.css);
 @import url(./blocks/authenticationForm/__linkToEnter/authenticationForm__linkToEnter.css);
 @import url(./blocks/body/body.css);
+@import url(./blocks/mobile-menu/mobile-menu.css);
+@import url(./blocks/mobile-menu/__email/mobile-menu__email.css);
+@import url(./blocks/mobile-menu/__exit/mobile-menu__exit.css);
+@import url(./blocks/mobile-menu/_opened/mobile-menu_opened.css);
+
 
 
