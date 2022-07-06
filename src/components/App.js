@@ -158,7 +158,6 @@ function App() {
       let jwt = localStorage.getItem('jwt');
       authApi.getContent(jwt)
       .then(res => {
-        console.log(res)
         if(res.data._id) {
           setEmail(res.data.email);
           setLoggedIn(true);
