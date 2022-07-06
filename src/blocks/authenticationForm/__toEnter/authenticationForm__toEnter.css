@@ -7,3 +7,9 @@
   color: #FFFFFF;
   text-align: center;
 }
+
+@media (max-width: 320px) {
+  .authenticationForm__toEnter {
+    margin: 20px 0 0 0;
+  }
+}

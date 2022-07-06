@@ -9,8 +9,9 @@
 
 @media (max-width: 320px) {
   .header {
-    margin: 0 auto 42px;
-    padding-left: 27px;
+    margin: 0 auto 0;
+    padding-left: 30px;
+    padding-right: 30px;
     min-height: 56px;
     max-width: 320px;
   }

@@ -17,3 +17,13 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+@media (max-width: 320px) {
+  .header__menu {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+
+
