@@ -24,10 +24,6 @@ const Header = ({
         <img className="logo" src={src} alt="Логотип проекта" />
         <div></div>
         <h2 className="header__userLoggedInEmail">{email}</h2>
-<<<<<<< HEAD
-        <button className="header__menu" type="button" onClick={loggedIn ? handleLogout : handleClickMenuLink}>{loggedIn ? "Выйти" : isLoginForm ? "Регистрация" : "Войти"}</button>
-        <button className="header__burger" type="button" onClick={loggedIn ? handleClickOpenMobileMenu : undefined} style={ { backgroundImage: `url(${isMobileMenuOpen ? closeMenuIcon : burgerMenu})` }} ></button>
-=======
         <button
           className="header__menu"
           type="button"
@@ -45,7 +41,6 @@ const Header = ({
             })`,
           }}
         ></button>
->>>>>>> dev
       </header>
     </div>
   );
