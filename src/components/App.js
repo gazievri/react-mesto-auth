@@ -18,7 +18,6 @@ import ProtectedRoute from './ProtectedRoute';
 import * as authApi from "../utils/authApi.js";
 
 function App() {
-
   const [currentUser, getUserInfo] = React.useState({});
   const [isEditAvatarPopupOpen, setStateIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setStateIsEditProfilePopupOpen] = React.useState(false);
