@@ -36,22 +36,26 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    api.getInfo()
-    .then(res => {
-      getUserInfo(res);
-    })
-    .catch(err => console.log(err));
-  }, []);
-
-  React.useEffect(() => {
-    api.getCards()
-    .then(resolve => setDataCards(resolve))
-    .catch(err => console.log(err));
-  }, []);
-
-  React.useEffect(() => {
     tokenCheck();
   }, [])
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      api.getInfo()
+      .then(res => {
+        getUserInfo(res);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      api.getCards()
+      .then(resolve => setDataCards(resolve))
+      .catch(err => console.log(err));
+    }
+  }, [loggedIn]);
 
   function handleClickMenuLink() {
     isLoginForm ? history.push('/sign-up') : history.push('/sign-in');
@@ -149,13 +153,16 @@ function App() {
         history.push('/');
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+      setIsRegisterSucceed(false);
+      setIsRegisterResultPopupOpen(true);
+    })
   }
 
   function tokenCheck() {
     let jwt = localStorage.getItem('jwt');
     if (jwt) {
-      let jwt = localStorage.getItem('jwt');
       authApi.getContent(jwt)
       .then(res => {
         if(res.data._id) {
@@ -164,6 +171,7 @@ function App() {
           history.push('/');
         }
       })
+      .catch(err => console.log(err));
     }
   }
 
@@ -173,13 +181,12 @@ function App() {
     setLoggedIn(false);
     setIsMobileMenuOpen(false);
     history.push('/sign-in');
+    setIsMobileMenuOpen(false)
   }
 
   function handleClickOpenMobileMenu() {
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false)
-    } else {
-      setIsMobileMenuOpen(true)
+    if (loggedIn) {
+      setIsMobileMenuOpen(!isMobileMenuOpen)
     }
   }
 
