@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.gazievri.mesto.nomoredomains.sbs";
 
 export function checkResponse(response) {
   return response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
@@ -7,6 +7,7 @@ export function checkResponse(response) {
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json"
     },
@@ -18,6 +19,7 @@ export const register = (email, password) => {
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json"
     },
@@ -25,17 +27,28 @@ export const login = (email, password) => {
   })
   .then(checkResponse);
 }
-export const getContent = (token) => {
+
+export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${token}`
     }
   })
   .then(checkResponse);
 }
 
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "GET",
+    credentials: 'include',
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(checkResponse);
+}
 
 
 

@@ -43,7 +43,7 @@ function App() {
     if (loggedIn) {
       api.getInfo()
       .then(res => {
-        getUserInfo(res);
+        getUserInfo(res.data);
       })
       .catch(err => console.log(err));
     }
@@ -52,13 +52,13 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       api.getCards()
-      .then(resolve => setDataCards(resolve))
+      .then(resolve => setDataCards(resolve.data))
       .catch(err => console.log(err));
     }
   }, [loggedIn]);
 
   function handleClickMenuLink() {
-    isLoginForm ? history.push('/sign-up') : history.push('/sign-in');
+    isLoginForm ? history.push('/signup') : history.push('/signin');
   }
 
   function handleClickDeleteCard() {
@@ -87,28 +87,28 @@ function App() {
 
   function handleClickTooltipPopupClose() {
     setIsRegisterResultPopupOpen(false);
-    if (isRegisterSucceed) {history.push('/sign-in')}
+    if (isRegisterSucceed) {history.push('/signin')}
   }
 
   function handleUpdateUser(data) {
     api.sendNewProfileData(data)
-    .then(res => getUserInfo(res))
+    .then(res => getUserInfo(res.data))
     .catch(err => console.log(err));
     closeAllPopups();
   }
 
   function handleUpdateAvatar(data) {
     api.changeAvatar(data)
-    .then(res => getUserInfo(res))
+    .then(res => getUserInfo(res.data))
     .catch(err => console.log(err));
     closeAllPopups();
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
     .then((newCard) => {
-      setDataCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      setDataCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
     })
     .catch(err => console.log(err));
   }
@@ -124,7 +124,7 @@ function App() {
 
   function handleAddPlaceSubmit(data) {
     api.sendNewCardData(data)
-    .then(newCard => setDataCards([newCard, ...cards]))
+    .then(newCard => setDataCards([newCard.data, ...cards]))
     .catch(err => console.log(err));
     closeAllPopups();
   }
@@ -132,7 +132,7 @@ function App() {
   function handleRegister(email, password) {
     authApi.register(email, password)
     .then(data => {
-      if (data.data._id || data.data.email) {
+      if (data._id || data.email) {
         setIsRegisterSucceed(true);
       }
     })
@@ -146,7 +146,7 @@ function App() {
   function handleLogin(email, password) {
     authApi.login(email, password)
     .then(data => {
-      if(data.token) {
+      if(data.message === 'Athorization successful') {
         localStorage.setItem('jwt', data.token);
         setLoggedIn(true);
         setEmail(email);
@@ -161,27 +161,27 @@ function App() {
   }
 
   function tokenCheck() {
-    let jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      authApi.getContent(jwt)
-      .then(res => {
-        if(res.data._id) {
-          setEmail(res.data.email);
-          setLoggedIn(true);
-          history.push('/');
-        }
-      })
-      .catch(err => console.log(err));
-    }
+    authApi.getContent()
+    .then(res => {
+      if(res.data._id) {
+        setEmail(res.data.email);
+        setLoggedIn(true);
+        history.push('/');
+      }
+    })
+    .catch(err => console.log(err));
   }
 
   function handleLogout() {
-    localStorage.removeItem('jwt');
-    setEmail('');
-    setLoggedIn(false);
-    setIsMobileMenuOpen(false);
-    history.push('/sign-in');
-    setIsMobileMenuOpen(false)
+    authApi.logout()
+    .then(() => {
+      setEmail('');
+      setLoggedIn(false);
+      setIsMobileMenuOpen(false);
+      history.push('/signin');
+      setIsMobileMenuOpen(false)
+    })
+    .catch(err => console.log(err));
   }
 
   function handleClickOpenMobileMenu() {
@@ -218,14 +218,14 @@ function App() {
                   onCardDelete={handleClickDeleteCard}
                   cardForDelete={setSelectedCardForDelete}
                 />
-              <Route path="/sign-in">
+              <Route path="/signin">
                 <Login handleLogin={handleLogin} setIsLoginForm={setIsLoginForm} />
               </Route>
-              <Route path="/sign-up">
+              <Route path="/signup">
                 <Register handleRegister={handleRegister} setIsLoginForm={setIsLoginForm} />
               </Route>
               <Route path="*">
-                {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+                {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
               </Route>
             </Switch>
             <Footer />

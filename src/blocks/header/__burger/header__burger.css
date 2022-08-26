@@ -1,6 +1,5 @@
 .header__burger {
   display: none;
-  /* background-image: url('../../../images/burger-menu-line.svg'); */
   background-repeat: no-repeat;
   background-position: center;
   width: 24px;
@@ -17,7 +16,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 420px) {
   .header__burger {
     display: block;
     margin-left: auto;

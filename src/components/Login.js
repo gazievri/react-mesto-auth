@@ -28,7 +28,7 @@ const Login = ({ handleLogin, setIsLoginForm }) => {
       // noValidate
       action="#"
       method="get"
-      name="sign-in"
+      name="signin"
       onSubmit={handleSubmit}
     >
       <h2 className="authenticationForm__title">Вход</h2>
@@ -55,7 +55,7 @@ const Login = ({ handleLogin, setIsLoginForm }) => {
       </button>
       <p className="authenticationForm__toEnter">
         Не зарегистрированы?
-        <Link to="/sign-up" className="authenticationForm__linkToEnter">
+        <Link to="/signup" className="authenticationForm__linkToEnter">
           {" "}
           Регистрация
         </Link>

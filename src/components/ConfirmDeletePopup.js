@@ -7,7 +7,8 @@ const ConfirmDeletePopup = ({
   onSubmit,
   selectedCardForDelete,
 }) => {
-  function handlerSubmit() {
+  function handlerSubmit(e) {
+    e.preventDefault();
     onSubmit(selectedCardForDelete);
   }
 

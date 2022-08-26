@@ -17,9 +17,3 @@
   opacity: 0.6;
   cursor: pointer;
 }
-
-@media (max-width: 320px) {
-  .mobile-menu__exit {
-
-  }
-}
